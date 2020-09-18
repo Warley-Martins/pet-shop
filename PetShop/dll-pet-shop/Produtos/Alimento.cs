@@ -12,7 +12,7 @@ namespace dll_pet_shop
         /// <summary>
         /// Descrição do alimento
         /// </summary>
-        public bool Usado { get; }
+        public bool Usado { get; private set; }
         /// <summary>
         /// Construtor de Alimento
         /// </summary>
@@ -26,6 +26,13 @@ namespace dll_pet_shop
             : base(descricao, preco, potencialDeFelicidade)
         {
 
+        }
+        /// <summary>
+        /// Come um alimento
+        /// </summary>
+        public void comer()
+        {
+            this.Usado = true;
         }
         
     }

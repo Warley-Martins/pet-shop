@@ -28,10 +28,17 @@ namespace dll_pet_shop.Animais
             }
             if(comida.Usado == true)
             {
-                this.Felicidade -= 10;
-                return this.Felicidade;
+                if(Felicidade >= -90)
+                {
+                    return this.Felicidade = -100;
+                }
+                return this.Felicidade -= 10;
             }
-            return this.Felicidade += comida.PotencialDeFelicidade;
+            if (ConfereFelicidade(comida))
+            {
+                this.Felicidade += comida.PotencialDeFelicidade;
+            }
+            return this.Felicidade;
         }
         /// <summary>
         /// Recebe um brinquedo do dono
@@ -54,6 +61,44 @@ namespace dll_pet_shop.Animais
         {
             this.Limpo = true;
             return this.Limpo;
+        }
+        public int Brincar(Brinquedo brinquedo)
+        {
+            if(brinquedo == null)
+            {
+                throw new NullReferenceException("Referencia não definida para brinquedo");
+            } 
+            if(brinquedo.Usado == true)
+            {
+                if (ConfereFelicidade(brinquedo)) {
+                    return this.Felicidade -= brinquedo.PotencialDeFelicidade;
+                }
+            }
+            brinquedo.UtilizarBrinquedo();
+            if (ConfereFelicidade(brinquedo))
+            {
+                return this.Felicidade += brinquedo.PotencialDeFelicidade;
+            }
+            return this.Felicidade;
+        }
+        private bool ConfereFelicidade(Produto produto)
+        {
+            int sinal = 1;
+            if(produto.PotencialDeFelicidade + this.Felicidade > 100)
+            {
+                this.Felicidade = 100;
+                return false;
+            }
+            if(produto.PotencialDeFelicidade > 0)
+            {
+                sinal = -1;
+            }
+            if ((produto.PotencialDeFelicidade * sinal) + this.Felicidade < -100)
+            {
+                this.Felicidade = -100;
+                return false;
+            }
+            return true;
         }
     }
 }
