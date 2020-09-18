@@ -51,5 +51,36 @@ namespace pet_shop_test
             Assert.Equal(esperado, obtido);
             Assert.Equal(esperado, obtidoTotal);
         }
+        [Theory]
+        [InlineData("pitu", "bola", 100, 20, "bolinha", 10, 5, 1)]
+        [InlineData("pitu", "espinho", 100, 10, "espinhoMenor", 5, 10, -1)]
+        public void ConfereFelicidadeMaximaEMinima(string nome, string descricao, int potencial, int durabilidade, string descricao2, int potencial2, int durabilidade2, int sinal)
+        {
+            //Arranje
+            var cao = new Cachorro(nome);
+            var brinquedo = new Brinquedo(descricao, 10, (sinal * potencial), durabilidade);
+            var brinquedo2 = new Brinquedo(descricao2, 10, (sinal * potencial2), durabilidade2);
+            //Act
+            var esperado = sinal * 100;
+            cao.Brincar(brinquedo);
+            var obtido = cao.Brincar(brinquedo2);
+            //Assert
+            Assert.Equal(esperado, obtido);
+        }
+        [Theory]
+        [InlineData("bolinha", 101, 2)]
+        [InlineData("bolinha", -101, 2)]
+        [InlineData("bolinha", 10, 0)]
+        public void LancaArgumentExceptionRecebeBrinquedoInvalido(string descricao, int potencial, int durabilidade)
+        {
+            //Arranje
+            Brinquedo brinquedo;
+            //Asseert
+            Assert.Throws<ArgumentException>(
+                //Act
+                () => brinquedo = new Brinquedo(descricao, 10, potencial, durabilidade)
+                ); ;
+        }
+
     }
 }

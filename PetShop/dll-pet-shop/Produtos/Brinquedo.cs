@@ -26,13 +26,19 @@ namespace dll_pet_shop
         /// </summary>
         /// <param name="descricao">Descrição do alimento</param>
         /// <param name="preco">Preço do alimento</param>
-        /// <param name="potencialDeFelicidade">Potencial de deixar o animal feliz</param>
+        /// <param name="potencialDeFelicidade">Potencial de deixar o animal feliz</param>]
+        /// <param name="durabilidade">Quantas vezes o produto pode ser utilizado</param>
         /// <exception cref="ArgumentException">O parametro: <paramref name="descricao"/>, não pode ser nulo ou vazio</exception>
         /// <exception cref="ArgumentException">O parametro: <paramref preco="preco"/>, não pode ser menor ou igual a zero</exception>
         /// <exception cref="ArgumentException">O parametro: <paramref name="potencialDeFelicidade"/>, não pode ser maior que 100 ou menor que -100</exception>
+        /// <exception cref="ArgumentException">O parametro: <paramref name="durabilidade"/>, não pode ser menor ou igual a  zero</exception>
         public Brinquedo(string descricao, double preco, int PotencialDeFelicidade, int durabilidade)
             : base(descricao, preco, PotencialDeFelicidade)
         {
+            if(durabilidade <= 0)
+            {
+                throw new ArgumentException("O brinquedo não pode ter durabilidade menor ou igual a zero");
+            }
             this.Durabilidade = durabilidade;
             this.Usado = false;
         }
