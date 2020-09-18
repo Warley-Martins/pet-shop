@@ -28,7 +28,7 @@ namespace dll_pet_shop.Animais
             }
             if (comida.Usado == true)
             {
-                if (Felicidade >= -90)
+                if (Felicidade <= -90)
                 {
                     return this.Felicidade = -100;
                 }
@@ -38,6 +38,7 @@ namespace dll_pet_shop.Animais
             {
                 this.Felicidade += comida.PotencialDeFelicidade;
             }
+            comida.Comer();
             return this.Felicidade;
         }        /// <summary>
                  /// Recebe um brinquedo do dono

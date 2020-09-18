@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dll_pet_shop;
+using dll_pet_shop.Animais;
+using System;
 
 namespace PetShop
 {
@@ -6,7 +8,6 @@ namespace PetShop
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }

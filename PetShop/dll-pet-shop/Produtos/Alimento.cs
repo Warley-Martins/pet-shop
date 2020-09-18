@@ -30,7 +30,7 @@ namespace dll_pet_shop
         /// <summary>
         /// Come um alimento
         /// </summary>
-        public void comer()
+        public void Comer()
         {
             this.Usado = true;
         }

@@ -39,18 +39,18 @@ namespace pet_shop_test
         {
             //Arranje
             Alimento alimento = new Alimento(descricao, 10, potencial);
+            Alimento alimento2 = new Alimento(descricao, 10, potencial);
             Gato gato = new Gato(nome);
             Cachorro cao = new Cachorro(nome);
             //Act
             cao.ReceberComida(alimento);   //  10 
-            gato.ReceberComida(alimento);  //  10
+            gato.ReceberComida(alimento2);  //  10
             var esperado = potencial - 10;
             var obtidoCao = cao.ReceberComida(alimento);
-            var obtidoGato = gato.ReceberComida(alimento);
-            var CaoEGatoEsperado = true;
-            var CaoEGatoObtido = obtidoGato == obtidoCao;
+            var obtidoGato = gato.ReceberComida(alimento2);
             //Assert
-            Assert.Equal(CaoEGatoEsperado, CaoEGatoObtido);
+            Assert.Equal(esperado, obtidoCao);
+            Assert.Equal(obtidoCao, obtidoGato);
         }
         [Theory]
         [InlineData("pitu", "pate", 10)]
