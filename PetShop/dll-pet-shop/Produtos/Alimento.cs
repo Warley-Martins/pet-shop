@@ -9,6 +9,7 @@ namespace dll_pet_shop
     /// </summary>
     public class Alimento : Produto
     {
+        public int Id { get; }
         /// <summary>
         /// Descrição do alimento
         /// </summary>

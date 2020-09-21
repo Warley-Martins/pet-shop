@@ -9,6 +9,7 @@ namespace dll_pet_shop
     /// </summary>
     public class Cliente : Pessoa
     {
+        public int Id { get; }
         /// <summary>
         /// Animal do cliente
         /// </summary>

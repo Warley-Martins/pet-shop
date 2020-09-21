@@ -9,6 +9,7 @@ namespace dll_pet_shop
     /// </summary>
     public class Brinquedo : Produto
     {
+        public int Id { get; }
         /// <summary>
         /// Durabilidade
         /// </summary>

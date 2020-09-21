@@ -9,6 +9,8 @@ namespace dll_pet_shop.Animais
     /// </summary>
     public class Gato : Animal
     {
+        public int Id { get; }
+        public Cliente Dono { get; set; }
         public Gato(string nome)
             : base(nome)
         {
