@@ -60,5 +60,14 @@ namespace dll_pet_shop
             }
             return true;
         }
+
+        /// <summary>
+        /// Inforrmações do brinquedo
+        /// </summary>
+        /// <returns>String com : descricao, preço, potencial de feliciadade, durabilidade</returns>
+        public override string ToString()
+        {
+            return $"{Descricao},{Preco},{PotencialDeFelicidade},{Durabilidade}";
+        }
     }
 }

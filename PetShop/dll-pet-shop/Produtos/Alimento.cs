@@ -35,6 +35,13 @@ namespace dll_pet_shop
         {
             this.Usado = true;
         }
-        
+        /// <summary>
+        /// Inforrmações do alimento
+        /// </summary>
+        /// <returns>String com : descricao, preço, potencial de feliciadade</returns>
+        public override string ToString()
+        {
+            return $"{Descricao},{Preco},{PotencialDeFelicidade}";
+        }
     }
 }
