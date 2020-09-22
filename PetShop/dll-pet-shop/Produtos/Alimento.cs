@@ -9,7 +9,7 @@ namespace dll_pet_shop
     /// </summary>
     public class Alimento : Produto
     {
-        public int Id { get; }
+    
         /// <summary>
         /// Descrição do alimento
         /// </summary>
@@ -29,6 +29,13 @@ namespace dll_pet_shop
 
         }
         /// <summary>
+        /// Construtor default de alimento
+        /// </summary>
+        public Alimento()
+        {
+
+        }
+        /// <summary>
         /// Come um alimento
         /// </summary>
         public void Comer()
@@ -38,10 +45,10 @@ namespace dll_pet_shop
         /// <summary>
         /// Inforrmações do alimento
         /// </summary>
-        /// <returns>String com : descricao, preço, potencial de feliciadade</returns>
+        /// <returns>String com : id, descricao, preço, potencial de feliciadade</returns>
         public override string ToString()
         {
-            return $"{Descricao},{Preco},{PotencialDeFelicidade}";
+            return $"{Id},{Descricao},{Preco},{PotencialDeFelicidade}";
         }
     }
 }

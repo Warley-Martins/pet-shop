@@ -10,6 +10,10 @@ namespace dll_pet_shop
     public abstract class Animal
     {
         /// <summary>
+        /// Id do animal
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
         /// Nome do animal
         /// </summary>
         public string Nome { get; set; }
@@ -33,6 +37,13 @@ namespace dll_pet_shop
             }
             this.Nome = nome;
             this.Felicidade = 0;
+        }
+        /// <summary>
+        /// Construtor default de animal
+        /// </summary>
+        public Animal()
+        {
+
         }
         /// <summary>
         /// Recebe um alimento do dono

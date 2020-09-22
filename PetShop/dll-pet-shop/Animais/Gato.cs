@@ -9,8 +9,13 @@ namespace dll_pet_shop.Animais
     /// </summary>
     public class Gato : Animal
     {
-        public int Id { get; }
-        public Cliente Dono { get; set; }
+        /// <summary>
+        /// Construtor default de gato
+        /// </summary>
+        public Gato()
+        {
+
+        }
         public Gato(string nome)
             : base(nome)
         {
@@ -42,12 +47,13 @@ namespace dll_pet_shop.Animais
             }
             comida.Comer();
             return this.Felicidade;
-        }        /// <summary>
-                 /// Recebe um brinquedo do dono
-                 /// </summary>
-                 /// <param name="comida">Alimento recebido</param>
-                 /// <exception cref="NullReferenceException">O parametro: <paramref name="brinquedo"/>, não possui referência definida</exception>
-                 /// <returns>Retorna o grau de felidade atualizado</returns>
+        }
+        /// <summary>
+        /// Recebe um brinquedo do dono
+        /// </summary>
+        /// <param name="comida">Alimento recebido</param>
+        /// <exception cref="NullReferenceException">O parametro: <paramref name="brinquedo"/>, não possui referência definida</exception>
+        /// <returns>Retorna o grau de felidade atualizado</returns>
         public override int ReceberBrinquedo(Brinquedo brinquedo)
         {
             if (brinquedo == null)

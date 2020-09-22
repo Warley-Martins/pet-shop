@@ -9,6 +9,11 @@ namespace dll_pet_shop
     /// </summary>
     public abstract class Produto
     {
+
+        /// <summary>
+        /// Id do produto
+        /// </summary>
+        public int Id { get; set; }
         /// <summary>
         /// Descrição do produto
         /// </summary>
@@ -47,6 +52,13 @@ namespace dll_pet_shop
             this.Descricao = descricao;
             this.Preco = preco;
             this.PotencialDeFelicidade = potencialDeFelicidade;
+        }
+        /// <summary>
+        /// Construtor default
+        /// </summary>
+        public Produto()
+        {
+
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dll_pet_shop.Animais;
+using dll_pet_shop.Join;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,11 +11,11 @@ namespace dll_pet_shop
     /// </summary>
     public class Cliente : Pessoa
     {
-        public int Id { get; }
         /// <summary>
-        /// Animal do cliente
+        /// Cachorro do cliente
         /// </summary>
-        public Animal Animal { get; set; }
+        public Cachorro Cachorro { get; set; }
+        public Gato Gato { get; set; }
         /// <summary>
         /// Construtor do cliente
         /// </summary> 
@@ -29,18 +31,41 @@ namespace dll_pet_shop
             {
                 throw new NullReferenceException("O cliente não pode ser cadastrado sem um pet");
             }
-            this.ProdutosAlimentos = new List<Alimento>();
-            this.ProdutosBrinquedos = new List<Brinquedo>();
-            this.Animal = animal;
+            this.ProdutosAlimentos = new List<ClienteAlimento>();
+            this.ProdutosBrinquedos = new List<ClienteBrinquedo>();
+            var gato = animal as Gato;
+            if(gato != null)
+            {
+                this.Gato = gato;
+            }
+            else
+            {
+                var cachorro = animal as Cachorro;
+                this.Cachorro = cachorro;
+            }
+        }
+        /// <summary>
+        /// Construtor default de cliente
+        /// </summary>
+        public Cliente()
+            : base()
+        {
+            this.ProdutosAlimentos = new List<ClienteAlimento>();
+            this.ProdutosBrinquedos = new List<ClienteBrinquedo>();
         }
         /// <summary>
         /// Alimentos para o pet do cliente
         /// </summary>
-        public List<Alimento> ProdutosAlimentos { get; set; }
+        public List<ClienteAlimento> ProdutosAlimentos { get; set; }
         /// <summary>
         /// Brinquedos para o pet do cliente
         /// </summary>
-        public List<Brinquedo> ProdutosBrinquedos { get; set; }
+        public List<ClienteBrinquedo> ProdutosBrinquedos { get; set; }
+        /// <summary>
+        /// Compra alimentos para seu pet
+        /// </summary>
+        /// <param name="alimentos">Array de alimentos com capacidade livre</param>
+        /// <exception cref="NullReferenceException">O parametro: <paramref name="alimentos]"/>, não possui referencia definida</exception>
         public void ComprarComidaParaAnimal(params Alimento[] alimentos)
         {
             if (alimentos == null)
@@ -49,7 +74,7 @@ namespace dll_pet_shop
             }
             foreach (var item in alimentos)
             {
-                this.ProdutosAlimentos.Add(item);
+                this.ProdutosAlimentos.Add(new ClienteAlimento{ Alimento = item });
             }
         }
         /// <summary>
@@ -65,7 +90,7 @@ namespace dll_pet_shop
             }
             foreach (var item in brinquedos)
             {
-                this.ProdutosBrinquedos.Add(item);
+                this.ProdutosBrinquedos.Add(new ClienteBrinquedo { Brinquedo = item });
             }
         }
         /// <summary>
@@ -84,7 +109,8 @@ namespace dll_pet_shop
             {
                 throw new NullReferenceException("O alimento descartado não pode ser nulo");
             }
-            this.ProdutosAlimentos.Remove(alimento);
+            var alimentoRemovido = new ClienteAlimento() { Alimento = alimento };
+            this.ProdutosAlimentos.Remove(alimentoRemovido);
         }
         /// <summary>
         /// Descarta um brinquedo
@@ -102,7 +128,8 @@ namespace dll_pet_shop
             {
                 throw new NullReferenceException("O brinquedo descartado não pode ser nulo");
             }
-            this.ProdutosBrinquedos.Remove(brinquedo);
+            var brinquedoRemovido = new ClienteBrinquedo() { Brinquedo = brinquedo};
+            this.ProdutosBrinquedos.Remove(brinquedoRemovido);
         }
         /// <summary>
         /// Procura um brinqudo 
@@ -116,9 +143,10 @@ namespace dll_pet_shop
             {
                 throw new ArgumentException("A descrição do brinquedo não pode ser nula ou vazia");
             }
-            return this.ProdutosBrinquedos
-                       .Where(x => x.Descricao == descricao)
-                       .FirstOrDefault();
+            var brinquedo =  this.ProdutosBrinquedos
+                            .Where(x => x.Brinquedo.Descricao == descricao)
+                            .FirstOrDefault();
+            return brinquedo.Brinquedo;
         }
         /// <summary>
         /// Procura um alimento 
@@ -132,9 +160,10 @@ namespace dll_pet_shop
             {
                 throw new ArgumentException("A descrição do alimento não pode ser nula ou vazia");
             }
-            return this.ProdutosAlimentos
-                       .Where(x => x.Descricao == descricao)
-                       .FirstOrDefault();
+            var alimento = this.ProdutosAlimentos
+                           .Where(x => x.Alimento.Descricao == descricao)
+                           .FirstOrDefault();
+            return alimento.Alimento;
         }
         /// <summary>
         /// Dar um brinquedo ao pet
@@ -154,7 +183,15 @@ namespace dll_pet_shop
             {
                 throw new NullReferenceException("O cliente não possui o brinquedo procurado");
             }
-            return this.Animal.ReceberBrinquedo(brinquedo);
+            if(this.Gato == null && this.Cachorro == null)
+            {
+                throw new NullReferenceException("O cliente não possui um pet");
+            }
+            if(this.Gato != null)
+            {
+                return this.Gato.ReceberBrinquedo(brinquedo);
+            }
+            return this.Cachorro.ReceberBrinquedo(brinquedo);
         }
         /// <summary>
         /// Dar um alimento ao pet
@@ -174,7 +211,29 @@ namespace dll_pet_shop
             {
                 throw new NullReferenceException("O cliente não possui o brinquedo procurado");
             }
-            return this.Animal.ReceberComida(alimento);
+
+            if (this.Gato == null && this.Cachorro == null)
+            {
+                throw new NullReferenceException("O cliente não possui um pet");
+            }
+            if (this.Gato != null)
+            {
+                return this.Gato.ReceberComida(alimento);
+            }
+            return this.Cachorro.ReceberComida(alimento);
+        }
+        public bool LevarPetParaTomarBanho()
+        {
+
+            if (this.Gato == null && this.Cachorro == null)
+            {
+                throw new NullReferenceException("O cliente não possui um pet");
+            }
+            if (this.Gato != null)
+            {
+                return this.Gato.TomarBanho();
+            }
+            return this.Cachorro.TomarBanho();
         }
 
 

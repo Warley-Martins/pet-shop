@@ -9,7 +9,6 @@ namespace dll_pet_shop
     /// </summary>
     public class Brinquedo : Produto
     {
-        public int Id { get; }
         /// <summary>
         /// Durabilidade
         /// </summary>
@@ -36,12 +35,19 @@ namespace dll_pet_shop
         public Brinquedo(string descricao, double preco, int PotencialDeFelicidade, int durabilidade)
             : base(descricao, preco, PotencialDeFelicidade)
         {
-            if(durabilidade <= 0)
+            if (durabilidade <= 0)
             {
                 throw new ArgumentException("O brinquedo não pode ter durabilidade menor ou igual a zero");
             }
             this.Durabilidade = durabilidade;
             this.Usado = false;
+        }
+        /// <summary>
+        /// Construtor deffault de brinquedos
+        /// </summary>
+        public Brinquedo()
+        {
+
         }
         /// <summary>
         /// Brinca com o brinquedo
@@ -64,10 +70,10 @@ namespace dll_pet_shop
         /// <summary>
         /// Inforrmações do brinquedo
         /// </summary>
-        /// <returns>String com : descricao, preço, potencial de feliciadade, durabilidade</returns>
+        /// <returns>String com : id,descricao, preço, potencial de feliciadade, durabilidade</returns>
         public override string ToString()
         {
-            return $"{Descricao},{Preco},{PotencialDeFelicidade},{Durabilidade}";
+            return $"{Id},{Descricao},{Preco},{PotencialDeFelicidade},{Durabilidade}";
         }
     }
 }

@@ -11,6 +11,10 @@ namespace dll_pet_shop
     public abstract class Pessoa
     {
         /// <summary>
+        /// Id da pessoa
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
         /// Nome da pessoa
         /// </summary>
         public string Nome { get; set; }
@@ -39,9 +43,11 @@ namespace dll_pet_shop
             this.Nome = nome;
         }
         /// <summary>
-        /// Compra alimentos para seu pet
+        /// Construtor default de pessoa
         /// </summary>
-        /// <param name="alimentos">Array de alimentos com capacidade livre</param>
-        /// <exception cref="NullReferenceException">O parametro: <paramref name="alimentos"/>, não possui referencia definida</exception>
+        public Pessoa()
+        {
+
+        }
     }
 }

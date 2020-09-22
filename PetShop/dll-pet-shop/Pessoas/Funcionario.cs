@@ -21,5 +21,13 @@ namespace dll_pet_shop.Pessoas
         {
 
         }
+        /// <summary>
+        /// Construtor default
+        /// </summary>
+        public Funcionario()
+            : base()
+        {
+
+        }
     }
 }
