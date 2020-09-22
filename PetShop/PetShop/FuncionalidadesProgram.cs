@@ -241,21 +241,19 @@ namespace PetShop
         }
         public static void PrintarAlimento(Alimento item)
         {
-            var texto = item.ToString().Split(',');
-            Console.WriteLine($"\nId: {texto[0]}" +
-                              $"\nDescrição: {texto[1]}" +
-                              $"\nPreço: R$ {texto[2]}" +
-                              $"\nPotencial de Felicidade: {texto[3]}");
+            Console.WriteLine($"\nId: {item.Id}" +
+                              $"\nDescrição: {item.Descricao}" +
+                              $"\nPreço: R$ {item.Preco}" +
+                              $"\nPotencial de Felicidade: {item.PotencialDeFelicidade}");
 
         }
         public static void PrintarBrinquedo(Brinquedo item)
         {
-            var texto = item.ToString().Split(',');
-            Console.WriteLine($"\nId: {texto[0]}" +
-                              $"\nDescrição: {texto[1]}" +
-                              $"\nPreço: R$ {texto[2]}" +
-                              $"\nPotencial de Felicidade: {texto[3]}" +
-                              $"\nDurabilidade: {texto[4]}");
+            Console.WriteLine($"\nId: {item.Id}" +
+                              $"\nDescrição: {item.Descricao}" +
+                              $"\nPreço: R$ {item.Preco}" +
+                              $"\nPotencial de Felicidade: {item.PotencialDeFelicidade}" +
+                              $"\nDurabilidade: {item.Durabilidade}");
         }
         public static int AtribuirInt(string mensagem)
         {

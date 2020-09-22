@@ -4,14 +4,8 @@ using System.Text;
 
 namespace dll_pet_shop.Animais
 {
-    /// <summary>
-    /// Classe que representa um gato
-    /// </summary>
     public class Gato : Animal
     {
-        /// <summary>
-        /// Construtor default de gato
-        /// </summary>
         public Gato()
         {
 
@@ -21,12 +15,6 @@ namespace dll_pet_shop.Animais
         {
 
         }
-        /// <summary>
-        /// Recebe um alimento do dono
-        /// </summary>
-        /// <param name="comida">Alimento recebido</param>
-        /// <exception cref="NullReferenceException">O parametro: <paramref name="comida"/>, não possui referência definida</exception>
-        /// <returns>Retorna o grau de felidade atualizado</returns>
         public override int ReceberComida(Alimento comida)
         {
             if (comida == null)
@@ -48,12 +36,6 @@ namespace dll_pet_shop.Animais
             comida.Comer();
             return this.Felicidade;
         }
-        /// <summary>
-        /// Recebe um brinquedo do dono
-        /// </summary>
-        /// <param name="comida">Alimento recebido</param>
-        /// <exception cref="NullReferenceException">O parametro: <paramref name="brinquedo"/>, não possui referência definida</exception>
-        /// <returns>Retorna o grau de felidade atualizado</returns>
         public override int ReceberBrinquedo(Brinquedo brinquedo)
         {
             if (brinquedo == null)
@@ -62,15 +44,11 @@ namespace dll_pet_shop.Animais
             }
             return this.Felicidade += brinquedo.PotencialDeFelicidade;
         }
-        /// <summary>
-        /// Toma um banho
-        /// </summary>
         public override bool TomarBanho()
         {
             this.Limpo = true;
             return this.Limpo;
         }
-
         public int Brincar(Brinquedo brinquedo)
         {
             if (brinquedo == null)

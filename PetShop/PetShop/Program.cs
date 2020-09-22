@@ -17,25 +17,24 @@ namespace PetShop
                 } while (opcao < 0 || opcao > 6);
                 using (var contexto = new PetShopContext())
                 {
-                    //contexto.Database.EnsureCreated();
                     switch (opcao)
                     {
-                        case 1: // Printar Brinquedos
+                        case 1: 
                             MostrarProdutosBrinquedos(contexto);
                             break;
-                        case 2: // Printar Alimentos
+                        case 2: 
                             MostrarPrdutosAlimentos(contexto);
                             break;
-                        case 3: // Dar banho no pet
+                        case 3: 
                             DarBanho(contexto);
                             break;
-                        case 4: // Cadastrar novo alimento
+                        case 4: 
                             CadastrarAlimento(contexto);
                             break;
-                        case 5: // Cadastrar um novo brinquedo
+                        case 5: 
                             CadastrarBrinquedo(contexto);
                             break;
-                        case 6: // Vender um produto
+                        case 6: 
                             VenderProduto(contexto);
                             break;
                     }
